@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+@import './sass/_variables.sass'
+
+@mixin button-base()
+  @include typography(button)
+  @include ripple-surface
+  @include ripple-radius-bounded
+
+  display: inline-flex
+  position: relative
+  height: $button-height
+  border: none
+  vertical-align: middle
+
+  &:hover:
+    cursor: pointer
+
+  &:disabled
+    color: $mdc-button-disabled-ink-color
+    cursor: default
+    pointer-events: none
+
+p .sans 
+  font: Helvetica, sans-serif
+
+h1  
+  font-family: Arial, Helvetica, sans-serif
+  color: #3b7
+  font-size: 200%
+
+h2, h3
+  font-weight: lighter
+
+body
+  margin: 2em
+
+body, input[type="text"], button 
+  color: #333
+  font-family: Cambria, Georgia
+
+* 
+  font-family: Arial, Helvetica, sans-serif
+
+
+html, body
+  margin: 0
+  height: 100%
+
