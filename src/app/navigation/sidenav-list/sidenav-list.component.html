@@ -2,10 +2,19 @@
   <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
     <mat-icon>home</mat-icon><span class="nav-caption">Home</span>
   </a>
-  <a mat-list-item routerLink="/login" (click)="onSidenavClose()">
-    <mat-icon>login</mat-icon><span class="nav-caption">Login</span>
+  <a mat-list-item routerLink="/jobs" (click)="onSidenavClose()">
+    <mat-icon>work</mat-icon><span class="nav-caption">Jobs</span>
   </a>
-  <a mat-list-item routerLink="/sign-up" (click)="onSidenavClose()">
-    <mat-icon>account_box</mat-icon><span class="nav-caption">Sign Up</span>
+  <mat-list-item [matMenuTriggerFor]="menu">
+    <mat-icon>assignment_ind</mat-icon><span class="nav-caption">Account</span>
+  </mat-list-item>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/user/users" (click)="onSidenavClose()">Users</button>
+    <button mat-menu-item (click)="onSidenavClose()">Profile</button>
+    <button mat-menu-item (click)="onSidenavClose()" routerLink="/resume/resumes">Resumes</button>
+    <button mat-menu-item (click)="onSidenavClose()">Logout</button>
+  </mat-menu>
+  <a mat-list-item routerLink="/search">
+    <mat-icon>search</mat-icon>
   </a>
 </mat-nav-list>

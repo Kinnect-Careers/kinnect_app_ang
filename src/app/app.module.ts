@@ -15,7 +15,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserModule } from './user/user.module';
+import { ResumeModule } from './resume/resume.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     LayoutComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    UserCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,10 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     AppRoutingModule,
     RoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+    UserModule,
+    ResumeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

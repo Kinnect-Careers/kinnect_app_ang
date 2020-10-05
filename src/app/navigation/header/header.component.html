@@ -17,7 +17,9 @@
         <a matline>Account</a>
       </mat-list-item>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item >Resumes</button>
+        <button mat-menu-item routerLink="user/users">Users</button>
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item routerLink="/resume/resumes">Resumes</button>
         <button mat-menu-item>Logout</button>
       </mat-menu>
 
