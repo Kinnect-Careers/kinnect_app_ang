@@ -5,12 +5,27 @@
     </button>
   </div>
   <div >
-    <a routerLink="/home">Home</a>
+    <a class="logo" 
+      routerLink="/home">
+      <img src="/assets/logo_40.png">
+    </a>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li><a routerLink="/login">Login</a></li>
-      <li><a routerLink="/sign-up">Sign Up</a></li>
+      <li><a routerLink="/jobs">Jobs</a></li>
+      <mat-list-item [matMenuTriggerFor]="menu">
+        <a matline>Account</a>
+      </mat-list-item>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item >Resumes</button>
+        <button mat-menu-item>Logout</button>
+      </mat-menu>
+
+      <li>
+        <a routerLink="/search">
+          <mat-icon>search</mat-icon>
+        </a>
+      </li>
     </ul>
   </div>
 </mat-toolbar>
