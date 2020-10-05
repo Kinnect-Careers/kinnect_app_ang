@@ -1,0 +1,9 @@
+@import "custom";
+
+$theme: mat-dark-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+body {
+  background-color: #111111;
+}

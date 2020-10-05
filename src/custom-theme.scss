@@ -20,7 +20,7 @@ $kinnect-front-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$kinnect-front-theme: mat-light-theme((
+$kinnect-front-theme: mat-dark-theme((
   color: (
     primary: $kinnect-front-primary,
     accent: $kinnect-front-accent,
@@ -33,6 +33,25 @@ $kinnect-front-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($kinnect-front-theme);
 
+.alternate-theme {
+  $kinnect-front-primary: mat-palette($mat-indigo);
+  $kinnect-front-accent: mat-palette($mat-pink, A200, A100, A400);
+
+  // The warn palette is optional (defaults to red).
+  $kinnect-front-warn: mat-palette($mat-red);
+
+  // Create the theme object. A theme consists of configurations for individual
+  // theming systems such as "color" or "typography".
+  $kinnect-front-theme: mat-dark-theme((
+    color: (
+      primary: $kinnect-front-primary,
+      accent: $kinnect-front-accent,
+      warn: $kinnect-front-warn,
+    )
+  ));
+
+  @include angular-material-theme($kinnect-front-theme);
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,15 +1,18 @@
-<section fxLayout="column" fxFlexAlign="stretch">
+<section fxLayout="column" fxFlexAlign="stretch" class="mat-typography title-group">
+  <mat-divider></mat-divider>
   <div fxFlexAlign="center">
-    <mat-tab-group (selectTabChange)="executeSelectedChange($event)">
-      <mat-tab label="About US">
-        <p>Add about us</p>
-      </mat-tab>
-      <mat-tab label="Contact">
-        <p>Add contact</p>
-      </mat-tab>
-      <mat-tab label="FAQ">
-        <p>Add FAQ</p>
-      </mat-tab>
-    </mat-tab-group>
+    <div class="productCards">
+       <mat-tab-group (selectTabChange)="executeSelectedChange($event)">
+        <mat-tab label="About US">
+          <p>Add about us</p>
+        </mat-tab>
+        <mat-tab label="Contact">
+          <p>Add contact</p>
+        </mat-tab>
+        <mat-tab label="FAQ">
+          <p>Add FAQ</p>
+        </mat-tab>
+       </mat-tab-group>
+    </div>
   </div>
 </section>

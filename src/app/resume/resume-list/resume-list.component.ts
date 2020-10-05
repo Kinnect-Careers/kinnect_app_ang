@@ -8,7 +8,7 @@ import { Resume } from './../../_interface/resume.model';
 @Component({
   selector: 'app-resume-list',
   templateUrl: './resume-list.component.html',
-  styleUrls: ['./resume-list.component.sass']
+  styleUrls: ['./resume-list.component.scss']
 })
 export class ResumeListComponent implements OnInit , AfterViewInit{
   displayedColumns = ["title", 'created_at', 'details', 'update', 'delete'];
