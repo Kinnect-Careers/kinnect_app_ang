@@ -18,6 +18,8 @@ import { AngularMaterialModule } from './angular-material.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import 'hammerjs';
+import { TagModule } from './tag/tag.module';
+import { JobModule } from './job/job.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import 'hammerjs';
     UserModule,
     ResumeModule,
     AngularMaterialModule,
+    TagModule,
+    JobModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

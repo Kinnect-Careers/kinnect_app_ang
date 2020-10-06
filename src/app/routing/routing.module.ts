@@ -6,6 +6,7 @@ import { HomeComponent } from '../home/home.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'user', loadChildren: () => import('./../user/user.module').then(m => m.UserModule)},
+  { path: 'tag', loadChildren: () => import('./../tag/tag.module').then(m => m.TagModule) },
   { path: 'resume', loadChildren: () => import('./../resume/resume.module').then(m => m.ResumeModule)},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
