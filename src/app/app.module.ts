@@ -20,6 +20,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import 'hammerjs';
 import { TagModule } from './tag/tag.module';
 import { JobModule } from './job/job.module';
+import { ErrorPagesModule } from './error-pages/error-pages.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { JobModule } from './job/job.module';
     AngularMaterialModule,
     TagModule,
     JobModule,
+    ErrorPagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

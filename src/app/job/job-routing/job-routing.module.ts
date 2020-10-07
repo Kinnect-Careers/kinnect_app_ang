@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { JobListComponent } from './../job-list/job-list.component';
+import { JobDetailsComponent } from './../job-details/job-details.component';
 
 const routes: Routes = [
-  { path: '', component: JobListComponent }
+  { path: '', component: JobListComponent },
+  { path: ':id', component: JobDetailsComponent }
 ];
 
 @NgModule({

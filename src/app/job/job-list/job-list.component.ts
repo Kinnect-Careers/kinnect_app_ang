@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Job } from './../../_interface/job.model';
+import { ErrorHandlerService } from './../../shared/error-handler.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-job-list',
@@ -12,7 +15,9 @@ import { Job } from './../../_interface/job.model';
 })
 export class JobListComponent implements OnInit, AfterViewInit {
  
-  displayedColumns = ['title', 'text', 'pub_date', 'partner'];
+  displayedColumns = [
+    'title', 'text', 'pub_date', 'partner', 'tags',
+    'details', 'update', 'delete'];
   
   dataSource = new MatTableDataSource<Job>();
 
@@ -20,7 +25,11 @@ export class JobListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private repoService: RepositoryService) { }
+  constructor(
+    private repoService: RepositoryService,
+    private errorService: ErrorHandlerService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getAllJobs();
@@ -36,11 +45,25 @@ export class JobListComponent implements OnInit, AfterViewInit {
     .subscribe(res => {
       console.log(res);
       this.dataSource.data = res as Job[];
+    },
+    (error) => {
+      this.errorService.handleError(error);
     })
   }
 
   doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+
+  public redirectToDetails = (slug: string) => {
+    let url: string = `jobs/${slug}`;
+    this.router.navigate([url]);
+  }
+  public redirectToUpdate = (id: string) => {
+
+  }
+  public redirectToDelete = (id: string) => {
+
   }
 
 }

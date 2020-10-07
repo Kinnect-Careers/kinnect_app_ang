@@ -1,0 +1,24 @@
+<section fxLayout="row wrap" fxLayout="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Job Details:</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div fxLayout="row wrap">
+          <div fxFlex>{{job?.title}}</div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex>{{job?.text}}</div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex>{{job?.pub_date}}</div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex>{{job?.partner}}</div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex>{{job?.tags}}</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
