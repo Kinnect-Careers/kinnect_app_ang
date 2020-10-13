@@ -1,4 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,9 @@ import 'hammerjs';
 import { TagModule } from './tag/tag.module';
 import { JobModule } from './job/job.module';
 import { ErrorPagesModule } from './error-pages/error-pages.module';
+import { CardGridComponent } from './shared/card-grid/card-grid.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +37,7 @@ import { ErrorPagesModule } from './error-pages/error-pages.module';
     UserCreateComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -46,6 +52,8 @@ import { ErrorPagesModule } from './error-pages/error-pages.module';
     TagModule,
     JobModule,
     ErrorPagesModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'user', loadChildren: () => import('./../user/user.module').then(m => m.UserModule)},
   { path: 'tag', loadChildren: () => import('./../tag/tag.module').then(m => m.TagModule) },
   { path: 'jobs', loadChildren: () => import('./../job/job.module').then(m => m.JobModule) },
-  { path: 'resume', loadChildren: () => import('./../resume/resume.module').then(m => m.ResumeModule)},
+  { path: 'resumes', loadChildren: () => import('./../resume/resume.module').then(m => m.ResumeModule)},
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'}

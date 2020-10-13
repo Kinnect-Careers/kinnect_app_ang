@@ -1,0 +1,35 @@
+.content {
+  padding: 0.5em;
+}
+
+.content > mat-card {
+  width: 33%;
+}
+
+
+.filters {
+  width: 50em;
+  mat-form-field {
+    border: 1px;
+  }
+}
+
+
+mat-form-field {
+  margin-right: 2em;
+  input {
+    color: #fff;
+  }
+}
+
+mat-card-header {
+  height: 4em;
+  width: 8em;
+
+  mat-card-title {
+    font-size: 1.2em;
+    margin-left: -1em;
+  }
+}
+
+

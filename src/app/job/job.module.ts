@@ -6,7 +6,7 @@ import { MaterialModule } from './../../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { JobDataComponent } from './job-details/job-data/job-data.component';
-
+import { CardGridModule } from './../shared/card-grid/card-grid.module';
 
 @NgModule({
   declarations: [JobListComponent, JobDetailsComponent, JobDataComponent],
@@ -14,7 +14,8 @@ import { JobDataComponent } from './job-details/job-data/job-data.component';
     CommonModule,
     JobRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CardGridModule,
   ]
 })
 export class JobModule { }

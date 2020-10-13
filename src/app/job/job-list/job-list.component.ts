@@ -7,15 +7,16 @@ import { Job } from './../../_interface/job.model';
 import { ErrorHandlerService } from './../../shared/error-handler.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-job-list',
   templateUrl: './job-list.component.html',
-  styleUrls: ['./job-list.component.scss']
+  styleUrls: ['./job-list.component.scss'],
 })
 export class JobListComponent implements OnInit, AfterViewInit {
- 
-  displayedColumns = [
+  slug = 'api/v1/job/';
+  name = 'Jobs';
+
+  displayColumns = [
     'title', 'text', 'pub_date', 'partner', 'tags',
     'details', 'update', 'delete'];
   
@@ -41,7 +42,7 @@ export class JobListComponent implements OnInit, AfterViewInit {
   }
 
   getAllJobs = () => {
-    this.repoService.getData('api/v1/job/')
+    /**this.repoService.getData(this.slug)
     .subscribe(res => {
       console.log(res);
       this.dataSource.data = res as Job[];
@@ -49,6 +50,7 @@ export class JobListComponent implements OnInit, AfterViewInit {
     (error) => {
       this.errorService.handleError(error);
     })
+    */
   }
 
   doFilter = (value: string) => {

@@ -11,7 +11,10 @@ import { Resume } from './../../_interface/resume.model';
   styleUrls: ['./resume-list.component.scss']
 })
 export class ResumeListComponent implements OnInit , AfterViewInit{
-  displayedColumns = ["title", 'created_at', 'details', 'update', 'delete'];
+  slug = "api/v1/resume/";
+  name = "Resumes";
+
+  displayColumns = ["title", 'created_at', 'details', 'update', 'delete'];
   dataSource = new MatTableDataSource<Resume>();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -29,11 +32,13 @@ export class ResumeListComponent implements OnInit , AfterViewInit{
   }
 
   getAllResumes = () => {
+    /**
     this.repoService.getData('api/v1/resume/')
     .subscribe(res => {
       console.log(res);
       this.dataSource.data = res as Resume[];
     });
+    */
   }
 
   redirectToDetails = (id: string) => {}

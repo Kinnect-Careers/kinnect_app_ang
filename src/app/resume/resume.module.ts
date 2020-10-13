@@ -4,7 +4,7 @@ import { MaterialModule } from './../../material/material.module';
 import { ResumeListComponent } from './resume-list/resume-list.component';
 import { ResumeRoutingModule } from './resume-routing/resume-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { CardGridModule } from './../shared/card-grid/card-grid.module';
 
 @NgModule({
   declarations: [ResumeListComponent],
@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ResumeRoutingModule,
     MaterialModule,
     FlexLayoutModule,
+    CardGridModule
   ]
 })
 export class ResumeModule { }
