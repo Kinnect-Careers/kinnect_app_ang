@@ -1,0 +1,56 @@
+mat-card-title-group {
+  margin-bottom: 0.5em;
+}
+
+mat-card-content{
+  .skills{
+    display: inline-block;
+    button {
+      margin-right: 0.2em;
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.contacts {
+  margin-bottom: 1em;
+}
+
+.job-title{
+  font-weight: 500;
+}
+
+.company {
+  float: right;
+}
+
+.experience {
+
+  h2 {
+    margin-bottom: -0.2em;
+  }
+  
+  ul {
+    list-style-type: square;
+  }
+}
+
+.tasks {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+.education {
+  
+  h2 {
+    margin-bottom: 0.1em;
+  }
+  .edu-title {
+    font-weight: 500;
+  }
+}
+
+.action-button{
+  float: right;
+}
+

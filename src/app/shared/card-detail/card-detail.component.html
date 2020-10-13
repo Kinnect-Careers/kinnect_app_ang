@@ -1,0 +1,120 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title-group>
+      <mat-card-title>
+        {{detail?.title}}
+        <button *ngIf="type === 'job'" mat-stroked-button routerLink={{detail?.partner}}>
+          {{detail?.partner_name}}
+        </button>
+      </mat-card-title>
+      <mat-card-subtitle *ngIf="type === 'job'"> 
+        Posted {{detail?.time_ago}}
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <section>
+      <div class="contacts">
+        <mat-card-content *ngIf="type === 'job'">
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap">
+              <div fxFlex>{{detail?.text}}</div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-content *ngIf="type === 'resume'">
+          <div *ngFor="let contact of detail?.contacts">
+            <span *ngIf="contact.contact_type === 'P' else email">
+              Phone:
+            </span>
+            <ng-template #email>
+              Email:
+            </ng-template>
+            <span>{{contact.contact}}</span>
+          </div>
+          <div *ngFor="let link of detail?.links">
+            <span *ngIf="link.link_type === 'R' else web">
+              Repository:
+            </span>
+            <ng-template #web>
+              Website:
+            </ng-template>
+            {{link.link}}
+          </div>
+        </mat-card-content>
+      </div>
+      <div *ngIf="detail?.experiences" class="experience">
+        <mat-card-content>
+          <h2>Experiences:</h2>
+          <div *ngFor="let exp of detail.experiences" id="exp">
+            <span class="job-title">
+              {{exp.job_title}}, 
+            </span> 
+            <span>
+              {{exp.started_at | date:'LLL/yyyy'}} - 
+            </span>
+            <span *ngIf="exp.ended_at else present">
+              {{exp.ended_at | date:'LLL/yyyy'}}
+            </span>
+            <ng-template #present>
+              <span>Present</span>
+            </ng-template>
+            <span class="company">
+              {{exp.company}}, {{exp.location}}
+            </span>
+            <ul>
+              <div class="tasks" *ngFor="let task of exp.task_set">
+                <li>{{task.description}}</li>
+              </div>
+            </ul>
+          </div>
+        </mat-card-content>
+      </div>
+      <mat-card-content *ngIf="detail?.educations" class="education"> 
+        <h2>Education:</h2>
+        <div *ngFor="let ed of detail.educations">
+          <span class="edu-title">
+              {{ed.institution}}, 
+          </span> 
+          <span>
+             {{ed.started_at | date:'LLL/yyyy'}} - 
+          </span>
+          <span *ngIf="ed.ended_at else present">
+            {{ed.ended_at | date:'LLL/yyyy'}}
+          </span>
+          <ng-template #present>
+            <span>Present</span>
+          </ng-template>
+          <span class="company">
+            {{ed.degree_type}}, {{ed.degree}}
+          </span>
+        </div>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="detail?.skills">
+        <h2>Skills:</h2>
+        <div *ngFor="let skill of detail?.skills" class="skills">
+          <button mat-raised-button matTooltip={{skill.description}}>
+            {{skill.name}}
+          </button>
+        </div>
+      </mat-card-content>
+    </section>
+    
+    <section class="action-button">
+      <button *ngIf="type === 'job'" mat-raised-button color="primary">
+        Apply
+      </button>
+      <button *ngIf="type === 'resume'" mat-raised-button color="primary">
+        Download
+      </button>
+    </section>
+    <mat-card-actions *ngIf="type === 'job'">
+      <mat-form-field>
+        <mat-select placeholder="Show related jobs">
+          <mat-option *ngFor="let tag of detail?.tags" [value]="tag.value">
+            {{tag.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-actions>
+  </mat-card>
+</section>

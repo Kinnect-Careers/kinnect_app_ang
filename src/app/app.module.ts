@@ -25,6 +25,7 @@ import { JobModule } from './job/job.module';
 import { ErrorPagesModule } from './error-pages/error-pages.module';
 import { CardGridComponent } from './shared/card-grid/card-grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardDetailModule } from './shared/card-detail/card-detail.module';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ErrorPagesModule,
     FormsModule,
     ReactiveFormsModule,
+    CardDetailModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,8 +2,8 @@ export interface Resume {
   contacts: string;
   links: string;
   experiences: string;
-  educations: string;
+  educations: any[];
   skills: string;
   title: string;
-  createdAt: Date;
+  created_at: Date;
 }
