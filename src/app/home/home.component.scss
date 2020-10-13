@@ -3,7 +3,7 @@
 section {
   font-family: 'Roboto Mono', monospace;
   
-  mat-tab {
+  mat-tab-label{
     font-family: 'Roboto Mono', monospace;
   }
   div p {
@@ -21,9 +21,12 @@ section div + p {
 }
 
 mat-tab-group {
-  text-align: right;
+  text-align: left;
+  h2 {
+    padding: 0.5em 0.2em; 
+  }
   p {
-    padding-top: 20px;
-
+    padding-top: -0.5em;
+    padding-left: 0.5em;
   }
 }
