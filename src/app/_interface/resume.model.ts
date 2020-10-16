@@ -1,9 +1,9 @@
 export interface Resume {
-  contacts: string;
-  links: string;
-  experiences: string;
+  contacts: any[];
+  links: any[];
+  experiences: any[];
   educations: any[];
-  skills: string;
+  skills: any[];
   title: string;
   created_at: Date;
 }

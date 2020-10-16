@@ -1,0 +1,193 @@
+<div *ngIf="innerWidth<700">
+  <mat-tab-group class='tab' (selectedTabChange)="changeTab($event)">
+    <mat-tab label="PERSONAL"></mat-tab>
+    <mat-tab label="EXPERIENCE"></mat-tab>
+    <mat-tab label="EDUCATION"></mat-tab>
+    <mat-tab label="SKILLS"></mat-tab>
+    <mat-tab label="OTHER"></mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="cards">
+  <div class="top">
+    <h2 class="available">AVAILABLE</h2>
+    <h2 class="current">CURRENT</h2>
+  </div>
+  <div class="row" *ngIf="show.personal || show.all">
+    <div class="card">
+      <button mat-raised-button color="accent" (click)="handleCreatePersonal()">
+      + Personal
+      </button>
+      <div *ngFor="let contact of available.contacts; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{contact.contact}}
+          </div>
+          <div class="removable">
+            <mat-icon class="blue" (click)="handleAdd('contacts', i)"
+              [selectedObject]="contact"
+              >add_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let link of available.links; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box" cdkDrag>
+            {{link.link}}
+          </div>
+          <div class="removable">
+            <mat-icon class="blue" (click)="handleAdd('links', i)"
+              [selectedObject]="link"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="card">
+      <div *ngFor="let contact of current.contacts; let i=index" [attr.data-index]="i">
+        <div class="container" cdkDrag>
+          <div class="box" cdkDrag>
+            {{contact.contact}}
+          </div>
+          <div class="removable">
+            <mat-icon class="red" (click)="handleRemove('contacts', i)"
+              [selectedObject]="contact"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let link of current.links; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box" cdkDrag>
+            {{link.link}}
+          </div>
+          <div class="removable">
+            <mat-icon class="red" (click)="handleRemove('links', i)"
+              [selectedObject]="link"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div *ngIf="show.experiences || show.all" class="row">
+    <div class="card">
+      <button mat-raised-button (click)="handleAddExperience()">
+      + Experience
+      </button>
+      <div *ngFor="let exp of available.experiences; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{exp.job_title}} at {{exp.company}}
+          </div>
+          <div class="removable">
+            <mat-icon class="blue" (click)="handleAdd('experiences', i)"
+              >add_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div *ngFor="let exp of current.experiences; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box" cdkDrag>
+            {{exp.job_title}} at {{exp.company}}
+          </div>
+          <div class="removable">
+            <mat-icon class="red" (click)="handleRemove('experiences', i)"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show.educations || show.all" class="row">
+    <div class="card">
+      <button mat-raised-button (click)="handleAddEducation()">
+      + Education
+      </button>
+      <div *ngFor="let edu of available.educations; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{edu.degree_type}} at {{edu.institution}}
+          </div>
+          <div class="removable">
+            <mat-icon class="blue" (click)="handleAdd('educations', i)"
+              >add_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div *ngFor="let edu of current.educations; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{edu.degree_type}} at {{edu.institution}}
+          </div>
+          <div class="removable">
+            <mat-icon class="red" (click)="handleRemove('educations', i)"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show.skills || show.all" class="row">
+    <div class="card">
+      <button mat-raised-button (click)="handleAddSkill()">
+      + Skill
+      </button>
+      <div *ngFor="let skill of available.skills; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{skill.name}}
+          </div>
+          <div class="removable">
+            <mat-icon class="blue" (click)="handleAdd('skills', i)"
+              >add_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div *ngFor="let skill of current.skills; let i=index" [attr.data-index]="i">
+        <div class="container">
+          <div class="box">
+            {{skill.name}}
+          </div>
+          <div class="removable">
+            <mat-icon class="red" (click)="handleRemove('skills', i)"
+              >remove_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show.other || show.all" class="row">
+    <div class="card">
+      <button mat-raised-button (click)="handleAddOther()">
+      + Other
+      </button>
+    </div>
+    <div class="card">
+      <div *ngFor="let other of current.other">
+        <div class="container" cdkDrag>
+          <div class="box">
+            {{other.key}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="update-button" mat-raised-button color="primary"
+    (click)="updateCard()">
+    Update Resume
+  </button>
+  <button id="preview-button" mat-raised-button color="accent">
+    Preview Resume
+  </button>
+</div>
+
+
+
+

@@ -26,6 +26,7 @@ import { ErrorPagesModule } from './error-pages/error-pages.module';
 import { CardGridComponent } from './shared/card-grid/card-grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardDetailModule } from './shared/card-detail/card-detail.module';
+import { CardEditModule } from './shared/card-edit/card-edit.module';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { CardDetailModule } from './shared/card-detail/card-detail.module';
     FormsModule,
     ReactiveFormsModule,
     CardDetailModule,
+    CardEditModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

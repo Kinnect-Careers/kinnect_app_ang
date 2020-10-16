@@ -20,7 +20,7 @@
             </div>
           </div>
         </mat-card-content>
-        <mat-card-content *ngIf="type === 'resume'">
+        <mat-card-content *ngIf="type === 'resumes'">
           <div *ngFor="let contact of detail?.contacts">
             <span *ngIf="contact.contact_type === 'P' else email">
               Phone:
@@ -88,22 +88,28 @@
           </span>
         </div>
       </mat-card-content>
-
-      <mat-card-content *ngIf="detail?.skills">
-        <h2>Skills:</h2>
-        <div *ngFor="let skill of detail?.skills" class="skills">
-          <button mat-raised-button matTooltip={{skill.description}}>
-            {{skill.name}}
-          </button>
-        </div>
-      </mat-card-content>
+      <div *ngIf="detail?.skills">
+        <mat-card-content >
+          <h2>Skills:</h2>
+          <div *ngFor="let skill of detail?.skills" class="skills">
+            <button mat-raised-button matTooltip={{skill.description}}>
+              {{skill.name}}
+            </button>
+          </div>
+        </mat-card-content>
+      </div>
     </section>
     
     <section class="action-button">
       <button *ngIf="type === 'job'" mat-raised-button color="primary">
         Apply
       </button>
-      <button *ngIf="type === 'resume'" mat-raised-button color="primary">
+      <button *ngIf="type === 'resumes'" mat-raised-button color="primary"
+        (click)="handleEdit()">
+        Edit
+      </button>
+      <button *ngIf="type === 'resumes'" mat-raised-button color="primary"
+        (click)="handleDownload()">
         Download
       </button>
     </section>

@@ -1,0 +1,118 @@
+.top{
+  h2 {
+    display: inline;
+  }
+  .available{
+    margin-left: 2em;
+  }
+  .current{
+    margin-left: 50%;
+  }
+}
+
+
+button {
+  margin-top: 1em;
+  float: right;
+}
+
+.cards{
+  margin-top: 2em;
+
+  .row {
+    width: 100%;
+    margin-top: 1em;
+  }
+}
+
+.card {
+  background: rgba(200,200,200, 0.7);
+  border-radius: 2px;
+  display: inline-block;
+  height: 200px;
+  margin: 1rem;
+  position: relative;
+  width: 44%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  button {
+    margin-top: -3em;
+  }
+}
+
+.container {
+  display: inline-block;
+  position: relative; 
+  float: right;
+  .removable{
+    margin-top: 0.4em;
+    margin-left: 0.6em;
+    top: -1em;
+    left: 0;
+    z-index: 10;
+    mat-icon {
+      position: absolute;
+      font-size: 1em;
+    }
+    .red {
+      color: red;
+    }
+    .blue{
+      color: blue;
+    }
+  }
+}
+
+.box {
+  float: right;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: move;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  background: #66aa66;
+  border-radius: 4px;
+  z-index: 1;
+  margin-left: 1em;
+  margin-top: 1em;
+  margin-right: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  &:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+}
+
+#update-button, #preview-button {
+  margin-bottom: 2em;
+  margin-right: 3em;
+}
+
+.mat-tab-label{
+  min-width: 25px !important;
+  padding: 1em;
+  margin: 0.2em;
+  font-weight: 700;
+  background-color: transparent;
+  &.mat-tab-label-active {
+    color: rgba(100, 240, 100, 0.9);
+    background-color: black;
+    border-radius: 1em 1em 0 0;
+  }
+}
+
+.mat-ink-bar{
+  background-color: yellow;
+}

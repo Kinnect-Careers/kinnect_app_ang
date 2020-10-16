@@ -8,5 +8,8 @@ export interface Job {
   partner: string;
   time_ago: string;
   partner_name: string;
+  skills?: string;
+  educations?: string;
+  experiences?: string;
   tags?: Tag[];
 }

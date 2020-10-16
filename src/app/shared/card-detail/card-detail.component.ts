@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from './../../_interface/job.model';
 import { Resume } from './../../_interface/resume.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,11 +31,9 @@ export class CardDetailComponent implements OnInit {
     let slug: string = this.activatedRoute.snapshot.params["id"];
     // Routes to proper collection of object and rendering in template
     let type: string = this.activatedRoute.snapshot["_routerState"].url.split("/")[1];
-    console.log(type);
-    console.log(this.activatedRoute);
     switch(type) {
       case 'jobs': {
-        this.type = "job";
+        this.type = "jobs";
         let detailApiURL: string = `api/v1/job/${slug}/`;
         this.repository.getData(detailApiURL)
         .subscribe(res => {
@@ -50,7 +48,7 @@ export class CardDetailComponent implements OnInit {
       } 
       case 'resumes': {
         console.log("Resumes detail");
-        this.type = "resume";
+        this.type = "resumes";
         let detailApiURL: string = `api/v1/resume/${slug}/`;
         this.repository.getData(detailApiURL)
         .subscribe(res => {
@@ -79,6 +77,12 @@ export class CardDetailComponent implements OnInit {
 	  return str.join(' ');
   }
 
+  handleEdit(){
+    console.log(`Editing ${this.type}`);
+    this.router.navigate([`${this.type}/${this.detail['slug']}/edit`]);
+  }
 
-
+  handleDownload(){
+    console.log("Implement Resume Download");
+  }
 }
