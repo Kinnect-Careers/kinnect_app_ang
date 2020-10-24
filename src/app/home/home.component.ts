@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
   us: string = "KinNect is an early stage startup dedicated to connecting formerly incarcerated individuals with employment opportunities. Our goal is to help the 600,000+ individuals exiting incarceration and returning to the workforce annually by finding them meaningful and financially sustainable employment that reduces their likelihood to become entangled with the criminal (in)justice system and provides the foundation to thrive within a community, increasing stability for a successful reentry. We are working to build a marketplace of jobs for this population while addressing the common pitfalls in applying for jobs, like a resume generator and an employer toolkit. KinNect’s founder and CEO, Thanisha Pariage, is a former public defender and currently the Recruiting and Hiring Manager at Bronx Defenders. She recently graduated as the David Bohnett fellow at NYU Wagner School of Public Service. The team includes William Coit- NYU Masters student and COO. The KinNect team has both personal and professional experience addressing this challenge.";

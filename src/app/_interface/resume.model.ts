@@ -6,4 +6,5 @@ export interface Resume {
   skills: any[];
   title: string;
   created_at: Date;
+  slug: string;
 }

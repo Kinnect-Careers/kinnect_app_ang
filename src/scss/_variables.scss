@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap');
 @import "custom";
 
 $theme: mat-light-theme($primary, $accent, $warn);
@@ -6,8 +6,8 @@ $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
 body {
-  background-color: #111111;
-  font-family: 'Roboto Mono', monospace;
+  background-color: #EEEEEE;
+  font-family: 'Vollkorn', serif;
 }
 
 

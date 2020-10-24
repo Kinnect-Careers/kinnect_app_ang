@@ -12,15 +12,19 @@
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li><a routerLink="/jobs">Jobs</a></li>
+      <li><a routerLink="/jobs"><mat-icon>landscape</mat-icon></a></li>
       <mat-list-item [matMenuTriggerFor]="menu">
-        <a matline>Account</a>
+        <a matline><mat-icon>wb_incandescent</mat-icon></a>
       </mat-list-item>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="user/users">Users</button>
-        <button mat-menu-item>Profile</button>
-        <button mat-menu-item routerLink="/resumes">Resumes</button>
-        <button mat-menu-item>Logout</button>
+      <mat-menu color="primary" #menu="matMenu">
+        <button mat-menu-item routerLink="user/users">
+          <mat-icon>supervised_user_circle</mat-icon>Users</button>
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>Profile</button>
+        <button mat-menu-item routerLink="/resumes">
+          <mat-icon>dashboard</mat-icon>Resumes</button>
+        <button mat-menu-item>
+          <mat-icon>eject</mat-icon>Logout</button>
       </mat-menu>
 
       <li>

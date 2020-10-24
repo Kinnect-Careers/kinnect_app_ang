@@ -1,47 +1,95 @@
-.top{
-  h2 {
-    display: inline;
-  }
-  .available{
-    margin-left: 2em;
-  }
-  .current{
-    margin-left: 50%;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:wght@400;600&display=swap');
+
+.title{
+  position: sticky;
+  top: 0px;
+  z-index: -1;
+  display: inline;
+  background-color: black;
+  color: white;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-top: 0.1em solid red;
+  border-right: 0.1em solid red;
+  border-bottom: 0.1em solid red;
+  border-radius: 0 0 1em 0;
 }
 
 
 button {
   margin-top: 1em;
-  float: right;
+  float: left;
+  font-family: 'Vollkorn', serif;
 }
 
 .cards{
-  margin-top: 2em;
-
+  width: 100%;
   .row {
-    width: 100%;
-    margin-top: 1em;
+    width: 95%;
+    margin-top: 5em;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    button {
+      margin-top: -3em;
+      margin-left: 2em;
+      overflow: visible;
+      font-family: 'Open Sans', sans-serif;
+    }
   }
 }
 
 .card {
   background: rgba(200,200,200, 0.7);
-  border-radius: 2px;
+  border-radius: 8px;
   display: inline-block;
-  height: 200px;
+  height: 300px;
   margin: 1rem;
   position: relative;
-  width: 44%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  &:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  overflow-y: scroll;
+  min-width: 300px;
+  h2 {
+    font-family: 'Open Sans', sans-serif;
   }
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    margin-top: 1em;
 
-  button {
-    margin-top: -3em;
   }
+}
+
+card-left {
+  width: 50%;
+}
+
+.card-right {
+  width: 45%;
+  .title {
+    border-top: 0.1rem solid red;
+    border-right: 0.1rem solid red;
+    border-bottom: 0.1rem solid red;
+    border-radius: 0 0 1rem 0;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px white;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 150, 90, 0.8);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 150, 90, 0.8);
 }
 
 .container {
@@ -49,6 +97,7 @@ button {
   position: relative; 
   float: right;
   .removable{
+    cursor: pointer;
     margin-top: 0.4em;
     margin-left: 0.6em;
     top: -1em;
@@ -68,36 +117,46 @@ button {
 }
 
 .box {
+  font-family: 'Open Sans', sans-serif;
   float: right;
-  height: 20px;
   color: rgba(255, 255, 255, 0.87);
-  cursor: move;
   display: inline-block;
   align-items: center;
+  max-width: 250px;
   text-align: center;
   background: #66aa66;
   border-radius: 4px;
   z-index: 1;
+  text-align: right;
+  text-justify: auto;
   margin-left: 1em;
   margin-top: 1em;
   margin-right: 1em;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-              0 2px 2px 0 rgba(0, 0, 0, 0.14),
-              0 1px 5px 0 rgba(0, 0, 0, 0.12);
-
-  &:active {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  overflow-y:visible;
+  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover{
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
+
 }
 
 #update-button, #preview-button {
   margin-bottom: 2em;
   margin-right: 3em;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    font-size: 0.5em;
+  }
 }
 
 .mat-tab-label{
@@ -106,6 +165,7 @@ button {
   margin: 0.2em;
   font-weight: 700;
   background-color: transparent;
+  font-family: 'Open Sans', sans-serif;
   &.mat-tab-label-active {
     color: rgba(100, 240, 100, 0.9);
     background-color: black;
@@ -113,6 +173,48 @@ button {
   }
 }
 
-.mat-ink-bar{
-  background-color: yellow;
+.mat-tab-group.mat-primary .mat-ink-bar{
+  background: orange;
+  height: 5px;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .nav-button {
+    display: inline;
+    cursor: pointer;
+    color: rgba(10, 100, 10, 0.7);
+    mat-icon {
+      font-size: 2.5em;
+    }
+  }
+
+  #next {
+    float: right;
+    padding-left: 5em;
+    width: 45%;
+  }
+  #back {
+    width: 45%;
+  }
+}
+
+.action-buttons {
+  float: right;
+  button{
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+.res-title {
+  display: inline;
+  margin-left: 2rem;
 }

@@ -8,6 +8,7 @@ import { CardEditComponent } from './../../shared/card-edit/card-edit.component'
 const routes: Routes = [
   { path: '', component: ResumeListComponent},
   { path: ':slug/edit', component: CardEditComponent},
+  { path: 'new/edit', component: CardEditComponent},
   { path: ':id', component: CardDetailComponent},
 ];
 

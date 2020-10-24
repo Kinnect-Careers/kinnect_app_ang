@@ -58,6 +58,9 @@ export class CardDetailComponent implements OnInit {
           resume['educations'].map((ed) => {
             ed['institution'] = this.toTitleCase(ed['institution']);
           });
+          resume['experiences'].map(exp => {
+            exp['task_lines'] = this.getLines(exp['tasks']);
+          });
           this.detail = resume;
         });
         break;
@@ -84,5 +87,9 @@ export class CardDetailComponent implements OnInit {
 
   handleDownload(){
     console.log("Implement Resume Download");
+  }
+
+  getLines(str) {
+    return str.split(/\r\n|\r|\n/)
   }
 }

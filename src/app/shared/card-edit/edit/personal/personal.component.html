@@ -1,0 +1,20 @@
+<h1>New Personal Data </h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-select [(value)]="data.value">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{option.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Info:</mat-label>
+    <input matInput [(ngModel)]="data.info">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.info" cdkFocusInitial
+    (click)="onSubmit()">Submit</button>
+</div>
+

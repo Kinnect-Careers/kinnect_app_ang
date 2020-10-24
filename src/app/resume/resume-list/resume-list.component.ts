@@ -16,6 +16,6 @@ export class ResumeListComponent {
   constructor(private router: Router) { }
   
   createNewResume() {
-    this.router.navigate(["resumes/create/"]);
+    this.router.navigate(["resumes/new/edit"]);
   }
 }

@@ -61,8 +61,8 @@
               {{exp.company}}, {{exp.location}}
             </span>
             <ul>
-              <div class="tasks" *ngFor="let task of exp.task_set">
-                <li>{{task.description}}</li>
+              <div class="tasks" *ngFor="let task of exp.task_lines">
+                <li>{{task}}</li>
               </div>
             </ul>
           </div>
@@ -104,13 +104,13 @@
       <button *ngIf="type === 'job'" mat-raised-button color="primary">
         Apply
       </button>
-      <button *ngIf="type === 'resumes'" mat-raised-button color="primary"
+      <button *ngIf="type === 'resumes'" mat-fab color="primary"
         (click)="handleEdit()">
-        Edit
+        <mat-icon>edit</mat-icon>
       </button>
-      <button *ngIf="type === 'resumes'" mat-raised-button color="primary"
+      <button *ngIf="type === 'resumes'" mat-fab color="primary"
         (click)="handleDownload()">
-        Download
+        <mat-icon>cloud_download</mat-icon>
       </button>
     </section>
     <mat-card-actions *ngIf="type === 'job'">

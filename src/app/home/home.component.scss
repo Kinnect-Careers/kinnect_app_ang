@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600&display=swap');
 
 section {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Vollkorn', serif;
   
   mat-tab-label{
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Vollkorn', serif;
   }
   div p {
     color: rgba(10, 10, 10, 0.9);
     font-size: 0.5;
     margin: 30px 0;
-    font-family: 'Roboto Mono', monospace;
   }
 }
 
@@ -20,13 +19,31 @@ section div + p {
   padding-bottom: 20px;
 }
 
-mat-tab-group {
+.mat-tab-group {
   text-align: left;
   h2 {
-    padding: 0.5em 0.2em; 
+    padding: 0.5em 0 0.5em 2em;
+    font-family: 'Vollkorn', serif;
+    font-weight: 600;
   }
-  p {
-    padding-top: -0.5em;
-    padding-left: 0.5em;
+  p{
+    margin-top: -1em;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+}
+
+.mat-tab-label {
+  font-family: 'Vollkorn', serif;
+  font-weight: 600;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    font-size: 0.5em;
   }
 }

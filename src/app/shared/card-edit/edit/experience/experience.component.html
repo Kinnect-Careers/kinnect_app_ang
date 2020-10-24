@@ -1,0 +1,59 @@
+<h1>New Experience Data </h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Job Title:</mat-label>
+    <input matInput [(ngModel)]="data.jobTitle">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Start date</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="data.startDate">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+      startView="multi-year"
+      (yearSelected)="chosenYearHandler($event, 'startDate')"
+      (monthSelected)="chosenMonthHandler($event, dp, 'startDate')"
+      panelClass="date-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <section>
+    <mat-checkbox class="disable-end" [(ngModel)]="current">
+      Current
+    </mat-checkbox>
+  </section>
+  <div *ngIf="!current">
+    <mat-form-field appearance="fill">
+      <mat-label>End date</mat-label>
+      <input matInput [matDatepicker]="ep" [formControl]="data.endDate">
+      <mat-datepicker-toggle matSuffix [for]="ep"></mat-datepicker-toggle>
+      <mat-datepicker #ep
+        startView="multi-year"
+        (yearSelected)="chosenYearHandler($event, 'endDate')"
+        (monthSelected)="chosenMonthHandler($event, dp, 'endDate')"
+        panelClass="date-picker">
+      </mat-datepicker>
+    </mat-form-field>
+  </div>
+  <mat-form-field>
+    <mat-label>Company:</mat-label>
+    <input matInput [(ngModel)]="data.company">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Location:</mat-label>
+    <input matInput [(ngModel)]="data.location">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tasks:</mat-label>
+    <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="5"
+        [(ngModel)]="data.tasks">
+    </textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.company" cdkFocusInitial
+    (click)="onSubmit()">Submit</button>
+</div>

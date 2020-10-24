@@ -21,6 +21,10 @@ export class RepositoryService {
     return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
   }
 
+  patch = (route: string, body) => {
+    return this.http.patch(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
+  }
+
   delete = (route: string) => {
     return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
   }
@@ -31,7 +35,7 @@ export class RepositoryService {
 
   private generateHeaders = () => {
     return {
-      headers: new HttpHeaders({'Content-type': 'application/json'})
+      headers: new HttpHeaders({'Content-type': 'application/json;charset=utf-8'})
     }
   }
 }
