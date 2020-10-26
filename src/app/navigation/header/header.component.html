@@ -7,30 +7,61 @@
   <div >
     <a class="logo" 
       routerLink="/home">
-      <img src="/assets/logo_40.png">
+      <logo></logo>
+    <!--<img src="/assets/logo_40.png"> -->
     </a>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li><a routerLink="/jobs"><mat-icon>landscape</mat-icon></a></li>
-      <mat-list-item [matMenuTriggerFor]="menu">
-        <a matline><mat-icon>wb_incandescent</mat-icon></a>
-      </mat-list-item>
-      <mat-menu color="primary" #menu="matMenu">
-        <button mat-menu-item routerLink="user/users">
-          <mat-icon>supervised_user_circle</mat-icon>Users</button>
-        <button mat-menu-item>
-          <mat-icon>perm_identity</mat-icon>Profile</button>
-        <button mat-menu-item routerLink="/resumes">
-          <mat-icon>dashboard</mat-icon>Resumes</button>
-        <button mat-menu-item>
-          <mat-icon>eject</mat-icon>Logout</button>
-      </mat-menu>
-
+      <div *ngIf="!userIsLogged; else loggedUser">
+        <li>
+          <a class="login-link" (click)="handleLogin()">
+            <!-- routerLink="/login" -->
+            Login
+          </a>
+        </li>
+      </div>
       <li>
-        <a routerLink="/search">
-          <mat-icon>search</mat-icon>
-        </a>
+        <div class="buttons">
+          <a routerLink="/jobs">
+            Jobs
+          </a>
+        </div>
+      </li>
+      <ng-template #loggedUser class="logged-buttons">
+        <li>
+          <div class="buttons">
+            <a >
+              Profile
+            </a>
+          </div>
+        </li>        
+        <li>
+          <div class="buttons">
+            <a routerLink="resumes">
+              Resumes
+            </a>
+          </div>
+        </li>
+        <li>
+          <a class="login-link" (click)="handleLogin()">
+            Logout
+          </a>
+        </li>
+      </ng-template>
+      <li>
+        <div class="search-button">
+          <a >
+            <mat-icon>supervised_user_circle</mat-icon>
+          </a> 
+        </div>
+      </li>
+      <li>
+        <div class="search-button">
+          <a >
+            <mat-icon>search</mat-icon>
+          </a>
+        </div>
       </li>
     </ul>
   </div>

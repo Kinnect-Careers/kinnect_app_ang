@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:wght@400;600&display=swap');
 
 section {
   font-family: 'Vollkorn', serif;
@@ -19,25 +19,6 @@ section div + p {
   padding-bottom: 20px;
 }
 
-.mat-tab-group {
-  text-align: left;
-  h2 {
-    padding: 0.5em 0 0.5em 2em;
-    font-family: 'Vollkorn', serif;
-    font-weight: 600;
-  }
-  p{
-    margin-top: -1em;
-    padding-left: 3em;
-    padding-right: 3em;
-  }
-}
-
-.mat-tab-label {
-  font-family: 'Vollkorn', serif;
-  font-weight: 600;
-}
-
 .tab {
   display: flex;
   align-items: center;
@@ -46,4 +27,29 @@ section div + p {
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     font-size: 0.5em;
   }
+
+  h2.home-header {
+    padding: 0.5em 0 0.5em 2em;
+    font-family: 'Vollkorn', serif;
+    font-weight: 600;
+  }
+  p.text,p.text-iter{
+    margin-top: -1em;
+    padding-left: 3em;
+    padding-right: 3em;
+
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .mat-tab-label{
+    font-weight: 700;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif !important;
+    &.mat-tab-label-active {
+      color: rgba(100, 240, 100, 0.9);
+      background-color: black;
+      border-radius: 1em 1em 0 0;
+    }
+  }
+
 }

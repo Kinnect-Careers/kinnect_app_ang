@@ -16,12 +16,6 @@
 }
 
 
-button {
-  margin-top: 1em;
-  float: left;
-  font-family: 'Vollkorn', serif;
-}
-
 .cards{
   width: 100%;
   .row {
@@ -159,23 +153,29 @@ card-left {
   }
 }
 
-.mat-tab-label{
-  min-width: 25px !important;
-  padding: 1em;
-  margin: 0.2em;
-  font-weight: 700;
-  background-color: transparent;
-  font-family: 'Open Sans', sans-serif;
-  &.mat-tab-label-active {
-    color: rgba(100, 240, 100, 0.9);
-    background-color: black;
-    border-radius: 1em 1em 0 0;
+.card-edit {
+  .mat-tab-group.mat-primary .mat-ink-bar{
+    background: orange;
+    height: 5px;
   }
-}
 
-.mat-tab-group.mat-primary .mat-ink-bar{
-  background: orange;
-  height: 5px;
+  .mat-tab-label{
+    min-width: 25px !important;
+    padding: 1em;
+    margin: 0.2em;
+    font-weight: 700;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif !important;
+    &.mat-tab-label-active {
+      color: rgba(100, 240, 100, 0.9);
+      background-color: black;
+      border-radius: 1em 1em 0 0;
+    }
+  }
+  button {
+    margin-top: 1em;
+    float: left;
+  }
 }
 
 .centered {

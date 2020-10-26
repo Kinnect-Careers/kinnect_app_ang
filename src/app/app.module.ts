@@ -27,7 +27,7 @@ import { CardGridComponent } from './shared/card-grid/card-grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardDetailModule } from './shared/card-detail/card-detail.module';
 import { CardEditModule } from './shared/card-edit/card-edit.module';
-
+import { LogoComponent } from './shared/logo.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { CardEditModule } from './shared/card-edit/card-edit.module';
     HeaderComponent,
     SidenavListComponent,
     UserCreateComponent,
+    LogoComponent
   ],
   imports: [
     CommonModule,

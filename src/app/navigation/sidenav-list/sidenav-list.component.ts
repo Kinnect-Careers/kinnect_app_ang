@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav-list',
@@ -7,6 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SidenavListComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
+  @Output() sendLoggedStatusToHeader = new EventEmitter<any>();
+  
+  @Input() userIsLogged: boolean;
 
   constructor() { }
 
@@ -15,6 +18,11 @@ export class SidenavListComponent implements OnInit {
 
   onSidenavClose = () => {
     this.sidenavClose.emit();
+  }
+
+  handleLogin() {
+    this.userIsLogged = !this.userIsLogged;
+    this.sendLoggedStatusToHeader.emit(this.userIsLogged);
   }
 
 }

@@ -1,23 +1,22 @@
 <section fxLayout="column" fxFlexAlign="stretch" class="mat-typography title-group">
-  <mat-divider></mat-divider>
   <div fxFlexAlign="center center">
     <div class="productCards">
        <mat-tab-group class='tab' (selectTabChange)="executeSelectedChange($event)">
-        <mat-tab label="About">
-          <h2>Us</h2>
-          <p>{{us}}</p>
-          <h2>Employers</h2>
+        <mat-tab label="ABOUT">
+          <h2 class="home-header">Us</h2>
+          <p class="text">{{us}}</p>
+          <h2 class="home-header">Employers</h2>
           <div *ngFor="let line of employers">
-            <p>{{line}}</p>
+            <p class="text-iter">{{line}}</p>
           </div>
-          <h2>Job Seekers</h2>
-          <p>{{seekers}}</p>
-          <h2>Background</h2>
+          <h2 class="home-header">Job Seekers</h2>
+          <p class="text">{{seekers}}</p>
+          <h2 class="home-header">Background</h2>
           <div *ngFor="let line of background">
-            <p>{{line}}</p>
+            <p class="text-iter">{{line}}</p>
           </div>
         </mat-tab>
-        <mat-tab label="Contact">
+        <mat-tab label="CONTACT">
           <div>{{contact}}</div>
         </mat-tab>
         <mat-tab label="FAQ">

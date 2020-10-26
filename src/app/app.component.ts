@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Kinnect Careers';
+  passUserIsLogged: boolean;
 
+  connectLoggedStatusToSidenav($userIsLogged: boolean) {
+    this.passUserIsLogged = $userIsLogged;
+  }
+  connectLoggedStatus($userIsLogged: boolean) {
+    this.passUserIsLogged = $userIsLogged;
+  }
 }

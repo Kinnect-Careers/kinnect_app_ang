@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   ];
   contact: string = "";
   faq: string = "";
+
+  userIsLogged: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
