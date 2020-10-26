@@ -16,11 +16,12 @@
       <div *ngIf="!userIsLogged; else loggedUser">
         <li>
           <a class="login-link" (click)="handleLogin()">
-            <!-- routerLink="/login" -->
             Login
           </a>
         </li>
       </div>
+      <!-- <auth></auth> --> 
+
       <li>
         <div class="buttons">
           <a routerLink="/jobs">

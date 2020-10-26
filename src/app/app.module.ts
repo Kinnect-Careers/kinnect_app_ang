@@ -12,9 +12,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { UserCreateComponent } from './user/user-create/user-create.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserModule } from './user/user.module';
 import { ResumeModule } from './resume/resume.module';
 import { AngularMaterialModule } from './angular-material.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -28,6 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardDetailModule } from './shared/card-detail/card-detail.module';
 import { CardEditModule } from './shared/card-edit/card-edit.module';
 import { LogoComponent } from './shared/logo.component';
+//import { AuthModule } from '@auth0/auth0-angular';
+//import { AuthButtonComponent } from './auth.component';
+import { UserModule } from './shared/user/user.module';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,8 @@ import { LogoComponent } from './shared/logo.component';
     HomeComponent,
     HeaderComponent,
     SidenavListComponent,
-    UserCreateComponent,
-    LogoComponent
+    LogoComponent,
+//    AuthButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +50,6 @@ import { LogoComponent } from './shared/logo.component';
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    UserModule,
     ResumeModule,
     AngularMaterialModule,
     TagModule,
@@ -59,6 +59,11 @@ import { LogoComponent } from './shared/logo.component';
     ReactiveFormsModule,
     CardDetailModule,
     CardEditModule,
+    /**AuthModule.forRoot({
+      domain: 'dev-4scl802g.us.auth0.com',
+      clientId: 'j4C7Ej8UPWZdgUwm2QWwUUClkBZ5bYny'
+    }),*/
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
