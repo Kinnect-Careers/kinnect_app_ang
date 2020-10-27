@@ -45,11 +45,19 @@ section div + p {
     font-weight: 700;
     background-color: transparent;
     font-family: 'Open Sans', sans-serif !important;
+    border: 0px;
     &.mat-tab-label-active {
-      color: rgba(100, 240, 100, 0.9);
-      background-color: black;
-      border-radius: 1em 1em 0 0;
+      color: white;
+      background-color: #023028;
+      border-radius: 1em 0 1em 0;
     }
   }
+ // mat-tabs.mat-default-theme mat-ink-bar, mat-tabs mat-ink-bar {
+ //   color: yellow;
+ //   background-color: blue;
+ // }
+}
 
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    height: 0;
 }

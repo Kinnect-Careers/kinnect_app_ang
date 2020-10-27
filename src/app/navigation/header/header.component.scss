@@ -1,25 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:wght@400;600;900&display=swap');
 
+.header {
+  border-bottom: 5px solid #023028;
+
+}
+
 a {
   text-decoration: none;
-  color: white;
   /**font-family: 'Open Sans', sans-serif !important;*/
   font-family: 600;
-
+  color: #023028;
   &:hover, &:active{
-    color: lightgray;
+    color: #7209b7;
   }
 }
 
+.logo {
+  position: relative;
+}
+
 .navigation-items {
+  width: 30%;
   list-style-type: none;
   padding: 10px;
   padding-top: 10px;
   margin: 0;
   height: 40%;
+  z-index: 10;
   .logo{
     @media only screen and (min-width: 800px){
-      position: absolute;
+      //position: absolute;
     }
   }
 
@@ -29,6 +39,11 @@ a {
     font-family: 'Open Sans', sans-serif;
     cursor: pointer;
   }
+}
+
+.end{
+  float: right;
+  width: 100%;
 }
 
 mat-toolbar {
@@ -54,7 +69,6 @@ button {
   background-color: orange;
 
   a {
-    color: teal;
     mat-icon{
       margin-top: 30%;
     } 
@@ -71,10 +85,15 @@ button {
     font-size: 0.75em;
     font-weight: 600;
     padding: 1.2em;
+    color: white;
     font-family: 'Vollkorn', serif;
+  }
+  &:hover{
+    background-color: #7209b7;
   }
 }
 
 .search-button{
   padding-top: 5px;
 }
+

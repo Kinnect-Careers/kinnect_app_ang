@@ -4,15 +4,15 @@
       <mat-icon class="hamburger">menu</mat-icon>
     </button>
   </div>
-  <div >
-    <a class="logo" 
-      routerLink="/home">
+  <div fxHide.xs>
+  </div>
+  <div fxFlex fxLayout class="logo">
+    <a routerLink="/home">
       <logo></logo>
-    <!--<img src="/assets/logo_40.png"> -->
     </a>
   </div>
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+  <div fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items end">
       <div *ngIf="!userIsLogged; else loggedUser">
         <li>
           <a class="login-link" (click)="handleLogin()">
@@ -20,15 +20,6 @@
           </a>
         </li>
       </div>
-      <!-- <auth></auth> --> 
-
-      <li>
-        <div class="buttons">
-          <a routerLink="/jobs">
-            Jobs
-          </a>
-        </div>
-      </li>
       <ng-template #loggedUser class="logged-buttons">
         <li>
           <div class="buttons">
@@ -44,12 +35,20 @@
             </a>
           </div>
         </li>
+
         <li>
           <a class="login-link" (click)="handleLogin()">
             Logout
           </a>
         </li>
       </ng-template>
+      <li>
+        <div class="buttons">
+          <a routerLink="/jobs">
+            Jobs
+          </a>
+        </div>
+      </li>
       <li>
         <div class="search-button">
           <a >
