@@ -28,8 +28,8 @@ export class LogoComponent {
   fillColor: ColorFiller = { 
     K: 'rgb(100, 250, 100)',
     i: 'rgb(70, 215, 70)',
-    iDot: 'rgb(70, 215, 70)',
-    n: 'rgb(50, 200, 50)',
+    iDot: 'rgb(0, 215, 210)',
+    n: 'rgb(90, 10, 150)',
     N: 'rgb(100, 255, 210)',
     nTip: 'rgb(100, 255, 210)',
     e: 'rgb(120, 120, 120)',

@@ -2,7 +2,8 @@
   "name": "kinnect-front",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "ng serve",
+    "remote": "ng serve --host=0.0.0.0 --disable-host-check --port 4200",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test",

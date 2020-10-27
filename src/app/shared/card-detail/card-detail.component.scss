@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:wght@400;600&display=swap');
+
+
 mat-card-title-group {
   margin-bottom: 0.5em;
 }
@@ -12,8 +15,12 @@ mat-card-content{
   }
 }
 
-.contacts {
+.personal {
   margin-bottom: 1em;
+  margin-left: -1.2em;
+  padding: 1em 0 0.2em 1em;
+  background-color: #DDD;
+  border-radius: 0 1em 1em 0;
 }
 
 .job-title{
@@ -33,20 +40,36 @@ mat-card-content{
   ul {
     list-style-type: square;
   }
+
+  margin-right: -1.2em;
+  background-color: #DDD;
+  padding: 0.2em 0.5em 0 1em;
+  border-radius: 1em 0 0 1em;
+  
 }
 
 .tasks {
-  margin-top: 0.5em;
-  margin-bottom: 1em;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
 }
 
 .education {
-  
+  margin-left: -1.2em;
+  background-color: #DDD;
+  padding: 0.5em 0.5em 1.5em 1em;
+  border-radius: 0 1em 1em 0;
   h2 {
     margin-bottom: 0.1em;
   }
-  .edu-title {
-    font-weight: 500;
+  .edu-title{
+    display: inline;
+    .school {
+      font-weight: 600;
+    }
+    &::before{
+      content: "\A";
+      white-space: pre;
+    }
   }
 }
 
@@ -57,3 +80,25 @@ mat-card-content{
   }
 }
 
+.title-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-title{
+  font-family: 'Vollkorn', serif;
+  z-index: 2;
+  .resume-title{
+    background-color: #DDD;
+    padding: 0.5em 1em 0 1em;
+    border-radius: 0 0 1em 1em;
+  }
+}
+
+.details {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.head-experience {
+}
