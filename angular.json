@@ -61,6 +61,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ]
             }
           }
         },
@@ -72,6 +80,9 @@
           "configurations": {
             "production": {
               "browserTarget": "kinnect-front:build:production"
+            },
+            "test": {
+              "browserTarget": "kinnect-front:build:test"
             }
           }
         },
@@ -94,7 +105,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/theme.scss"
             ],
             "scripts": []
           }
