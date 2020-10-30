@@ -1,5 +1,5 @@
 // TODO: Add partner interface
-import { Tag } from './tag.model';
+import { TagInterface } from './tag.model';
 
 export interface Job {
   title: string;
@@ -11,5 +11,5 @@ export interface Job {
   skills?: string;
   educations?: string;
   experiences?: string;
-  tags?: Tag[];
+  tags?: TagInterface[];
 }

@@ -7,20 +7,17 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
+import { EducationService } from './education.service';
 
 const moment = _moment;
 
-interface Option {
-  value: string;
-  viewValue: string;
-}
-
 interface DialogData {
-  school: string;
+  institution: string;
   degree_type: string;
   degree: string;
-  startDate: any;
-  endDate: any;
+  started_at: any;
+  ended_at: any;
+  current: boolean;
 }
 
 export const MY_FORMATS = {
@@ -53,12 +50,12 @@ export class AddEducation implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<AddEducation>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private repository: RepositoryService
+    private educationService: EducationService
   ) {}
 
   ngOnInit(): void {
-    this.data.startDate = new FormControl(moment());
-    this.data.endDate = new FormControl(moment());
+    this.data.started_at = new FormControl();
+    this.data.ended_at = new FormControl();
   }
 
   onCancelClick(): void {
@@ -66,19 +63,14 @@ export class AddEducation implements OnInit{
   }
 
   onSubmit(): void {
-    
-    this.repository.create(`api/v1/education/`, {
-      institution: this.data.school,
-      degree_type: this.data.degree_type,
-      degree: this.data.degree,
-      started_at: this.data.startDate.value.format("YYYY-MM-DD"),
-      ended_at: !this.current ? this.data.endDate.value.format("YYYY-MM-DD") : null,
-      current: this.current
-    })
-    .subscribe(res => {
-        console.log(res);
+    let data = this.data;
+    console.log(this.data);
+    data.started_at = this.data.started_at.value ? this.data.started_at.value.format("YYYY-MM-DD") : null;
+    data.ended_at = !this.current && this.data.ended_at.value ? this.data.ended_at.value.format("YYYY-MM-DD") : null;
+    data.current = this.current;
+    this.educationService.create({
+      ...data
     });
-    
   }
 
   chosenYearHandler(normalizedYear: Moment, option) {
@@ -92,7 +84,5 @@ export class AddEducation implements OnInit{
     ctrlValue.month(normalizedMonth.month());
     this.data[option].setValue(ctrlValue);
     datepicker.close();
-
   }
-
 }

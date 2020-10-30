@@ -2,24 +2,24 @@
 <div mat-dialog-content>
   <mat-form-field>
     <mat-label>School name:</mat-label>
-    <input matInput [(ngModel)]="data.school">
+    <input matInput [(ngModel)]="data.institution" required>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Degree type:</mat-label>
-    <input matInput [(ngModel)]="data.degree_type">
+    <input matInput [(ngModel)]="data.degree_type" required>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Degree:</mat-label>
-    <input matInput [(ngModel)]="data.degree">
+    <input matInput [(ngModel)]="data.degree" required>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Start date</mat-label>
-    <input matInput [matDatepicker]="dp" [formControl]="data.startDate">
+    <input matInput [matDatepicker]="dp" [formControl]="data.started_at" required>
     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
     <mat-datepicker #dp
       startView="multi-year"
-      (yearSelected)="chosenYearHandler($event, 'startDate')"
-      (monthSelected)="chosenMonthHandler($event, dp, 'startDate')"
+      (yearSelected)="chosenYearHandler($event, 'started_at')"
+      (monthSelected)="chosenMonthHandler($event, dp, 'started_at')"
       panelClass="date-picker">
     </mat-datepicker>
   </mat-form-field>
@@ -31,12 +31,12 @@
   <div *ngIf="!current">
     <mat-form-field appearance="fill">
       <mat-label>End date</mat-label>
-      <input matInput [matDatepicker]="ep" [formControl]="data.endDate">
+      <input matInput [matDatepicker]="ep" [formControl]="data.ended_at">
       <mat-datepicker-toggle matSuffix [for]="ep"></mat-datepicker-toggle>
       <mat-datepicker #ep
         startView="multi-year"
-        (yearSelected)="chosenYearHandler($event, 'endDate')"
-        (monthSelected)="chosenMonthHandler($event, dp, 'endDate')"
+        (yearSelected)="chosenYearHandler($event, 'ended_at')"
+        (monthSelected)="chosenMonthHandler($event, dp, 'ended_at')"
         panelClass="date-picker">
       </mat-datepicker>
     </mat-form-field>
@@ -44,6 +44,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.school" cdkFocusInitial
+  <button mat-button [mat-dialog-close]="data.institution" cdkFocusInitial
     (click)="onSubmit()">Submit</button>
 </div>
