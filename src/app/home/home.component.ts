@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   ];
   contact: string = "";
   faq: string = "";
+  tutorials: string = "Make resume tutorial with suggestions and step by step instructions"
 
   userIsLogged: boolean = false;
   constructor() { }
