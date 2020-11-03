@@ -1,124 +1,176 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:wght@400;600&display=swap');
 
-.title{
-  position: sticky;
-  top: 0px;
-  z-index: -1;
-  display: inline;
-  background-color: black;
-  color: white;
-  padding-right: 1em;
-  padding-left: 1em;
-  border-top: 0.1em solid red;
-  border-right: 0.1em solid red;
-  border-bottom: 0.1em solid red;
-  border-radius: 0 0 1em 0;
+.card-edit {
+  width: 100%;
+  border: 2px dashed purple;
 }
 
-
-.cards{
-  width: 100%;
-  .row {
-    width: 95%;
-    margin-top: 5em;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+.tab-content{
+  width: 80%;
+  display: table;
+  .tab-header {
+    .header-wrapper {
+    }
     button {
-      margin-top: -3em;
-      margin-left: 2em;
-      overflow: visible;
-      font-family: 'Open Sans', sans-serif;
+      margin: 1em 0 0 1em;
+    }
+  }
+  .row {
+    margin-top: 5em;
+  }
+  .tab-footer{
+  }
+}
+.mat-tab-body-content::-webkit-scrollbar {
+  display: none;
+} 
+
+.card {
+  border-radius: 0 0 1.5em 1.5em;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 200px;
+  flex: 0 1 40%;
+  .buttons-wrapper {
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 94.5%;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .title-wrapper{
+    width: 100%;
+    display: flex;
+    z-index: 2;
+    justify-content: center;
+    background-color: rgb(100, 100, 100);
+    top: 0;
+    transform: translate(0, -3em);
+    position: sticky;
+    h2 {
+      border-radius: 0 0 1rem 1rem;
+      font-family: 'Vollkorn', sans-serif;
+      font-size: 1.5em;
+      position: sticky;
+      top: 0px;
+      display: inline;
+      color: white;
+      padding-right: 1em;
+      padding-left: 1em;
     }
   }
 }
 
-.card {
-  background: rgba(200,200,200, 0.7);
-  border-radius: 8px;
-  display: inline-block;
-  height: 300px;
-  margin: 1rem;
-  position: relative;
-  overflow-y: scroll;
-  min-width: 300px;
-  h2 {
-    font-family: 'Open Sans', sans-serif;
-  }
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    margin-top: 1em;
-
+.content-wrapper{
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-card-left {
-  width: 50%;
+.card.card-right{
+  background-color: black;
+  .container{
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.12), 5px 5px 5px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    &:hover{
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+  }
 }
 
+.card.card-left{
+  background-color: #023028;
+  .container{
+    box-shadow: 2px 2px 2px #6c757d, 2px 2px 2px #6c757d;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    &:hover{
+      box-shadow: 0 14px 28px #6c757d, 0 10px 10px #6c757d;
+    }
+  }
+}
+
+.card-left {
+  //background-color: #fdffb6;
+  //background-image: url("/assets/graph-paper.svg")
+}
 .card-right {
-  width: 45%;
-  .title {
-    border-top: 0.1rem solid red;
-    border-right: 0.1rem solid red;
-    border-bottom: 0.1rem solid red;
-    border-radius: 0 0 1rem 0;
-  }
+  background-color: #EEEEEE;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: none;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px white;
-  border-radius: 2px;
+  border-radius: none;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #023028;
-  border-radius: 2px;
-}
+  background: transparent;
+  border-radius: none;
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(10, 150, 90, 0.8);
 }
 
 .container {
-  display: inline-block;
-  position: relative; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   float: right;
-  .removable{
-    cursor: pointer;
-    margin-top: 0.4em;
-    margin-left: 0.6em;
-    top: -1em;
-    left: 0;
-    z-index: 10;
-    mat-icon {
-      position: absolute;
-      font-size: 1em;
-    }
-    .red {
-      color: #E6612D;
-    }
-    .blue{
-      color: #023028;
-    }
-  }
+  cursor: pointer;
+  width: 100%;
+  margin: 2px;
+}
+
+
+.container.evens {
+  border-radius: 0 3em 0 0;
+  margin-right: 0.5em;
+  background-color: #EEEEEE;
+  z-index: -1 !important;
+}
+.container.odds {
+  border-radius: 0 0 0 3em;
+  background-color: #588157;
+  transform: translate(16px, 0);
+  float: right;
+  left: 10px;
+  z-index: -1 !important;
+}
+
+.remove-left{
+  //width: 0%;
+  transform: translate(-200px, 0);
+  -webkit-transition: 12s;
+   transition:12s;
+    -moz-transition:12s;
+}
+
+.remove-right{
+  transform: translate(200px, 0);
+  -webkit-transition: 12s;
+   transition:12s;
+    -moz-transition:12s;
 }
 
 .box {
   font-family: 'Open Sans', sans-serif;
   float: right;
-  color: rgba(255, 255, 255, 0.87);
+  color: #023028;
   display: inline-block;
   align-items: center;
   max-width: 250px;
+  margin-bottom: 0.5em;
   text-align: center;
-  background-color: #023028;
+  //background-color: #EEEEEE;
   border-radius: 4px;
   z-index: 1;
   text-align: right;
@@ -129,13 +181,6 @@ card-left {
   padding-left: 0.5em;
   padding-right: 0.5em;
   overflow-y:visible;
-  
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  &:hover{
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
-
 }
 
 #update-button, #preview-button {
@@ -153,29 +198,24 @@ card-left {
   }
 }
 
-.card-edit {
-  .mat-tab-group.mat-primary .mat-ink-bar{
+.mat-tab-group.mat-primary .mat-ink-bar{
     height: 0;
-  }
+}
 
-  .mat-tab-label{
-    min-width: 25px !important;
-    padding: 1em;
-    margin: 0.2em;
-    font-weight: 700;
-    background-color: transparent;
-    font-family: 'Open Sans', sans-serif !important;
-    &.mat-tab-label-active {
-      background-color: #023028;
-      color: white;
-      border-radius: 1em 1em 0 0;
-    }
-  }
-  button {
-    margin-top: 1em;
-    float: left;
+.mat-tab-label{
+  padding: 1em;
+  font-weight: 700;
+  margin: 0.2em 0.2em 0.2em 0.2em;
+  background-color: transparent;
+  font-family: 'Open Sans', sans-serif !important;
+  border: 1px solid black;
+  &.mat-tab-label-active {
+    background-color: #023028;
+    color: white;
+    border: 0 solid transparent;
   }
 }
+
 
 .centered {
   display: flex;
@@ -185,6 +225,7 @@ card-left {
 
 .action-buttons {
   float: right;
+  display: table-column;
   button{
     font-family: 'Open Sans', sans-serif;
   }

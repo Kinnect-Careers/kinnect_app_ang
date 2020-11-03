@@ -1,225 +1,83 @@
-<div class="card-edit">
-  <mat-tab-group class='tab' >
-    <mat-tab label="PERSONAL">
-      <div class="cards">
-        <div class="row">
-          <button mat-raised-button color="accent" (click)="openDialog('personal')">
-              + Personal
-          </button>
-          <div class="card card-left">
-            <h2 class="title">Available</h2>
-            <div *ngFor="let contact of available.contacts; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{contact.contact}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="blue" (click)="handleAdd('contacts', i)"
-                    [selectedObject]="contact"
-                    >add_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-            <div *ngFor="let link of available.links; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box" cdkDrag>
-                  {{link.link}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="blue" (click)="handleAdd('links', i)"
-                    [selectedObject]="link"
-                    >add_circle</mat-icon>
-                </div>
-              </div>
-            </div> 
-          </div>
-          <div class="card card-right">
-            <h2 class="title">{{current?.title}}</h2>
-            <div *ngFor="let contact of current?.contacts; let i=index" [attr.data-index]="i">
-              <div class="container" cdkDrag>
-                <div class="box" cdkDrag>
-                  {{contact.contact}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="red" (click)="handleRemove('contacts', i)"
-                    [selectedObject]="contact"
-                    >remove_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-            <div *ngFor="let link of current?.links; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box" cdkDrag>
-                  {{link.link}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="red" (click)="handleRemove('links', i)"
-                    [selectedObject]="link"
-                    >remove_circle</mat-icon>
-                </div>
-              </div>
-            </div> 
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="EXPERIENCE">
-      <div class="cards">
-        <div class="row">
-          <button mat-raised-button (click)="openDialog('experience')" color="accent">
-            + Experience
-          </button>
-          <div class="card card-left">
-            <h2 class="title">Available</h2>
-            <div *ngFor="let exp of available.experiences; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{exp.job_title}} at {{exp.company}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="blue" (click)="handleAdd('experiences', i)"
-                    >add_circle</mat-icon>
-                </div>
-              </div>
+<div class="tab-content">
+  <mat-tab-group mat-stretch-tabs class="centered" >
+    <div *ngFor="let content of keys">
+      <mat-tab [label]="labels[content]">
+        <div>
+          <div class="tab-header">
+            <div class="header-wrapper"> 
+              <button mat-raised-button color="accent" (click)="openDialog(content)">
+                + {{labels[content]}}
+              </button>
             </div>
           </div>
-          <div class="card card-right">
-            <h2 class="title">{{current?.title}}</h2>
-            <div *ngFor="let exp of current?.experiences; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box" cdkDrag>
-                  {{exp.job_title}} at {{exp.company}}
+          <div class="row">
+            <div class="content-wrapper centered">
+              <div class="card card-left">
+                <div class="title-wrapper">
+                  <h2>To Be Added</h2>
                 </div>
-                <div class="removable">
-                  <mat-icon class="red" (click)="handleRemove('experiences', i)"
-                    >remove_circle</mat-icon>
+                <div class="buttons-wrapper">
+                  <div *ngFor="let data of available[content]; let i=index" [attr.data-index]="i">
+                    <div class="container" 
+                      [ngClass]="available.removeList[content].includes(data.id) ? getRemoveClass(i) : ''"
+                      [ngClass]="toNumber(i)%2 === 0 ? 'evens' : 'odds'"
+                      (click)="transferToOtherBox(content, i, available)"
+                      matTooltip={{data.description}}
+                      (contextmenu)="editElement()">
+                      <div class="box">
+                        {{data.show}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="current" class="card card-right">
+                <div class="title-wrapper">
+                  <h2>{{current.title}}</h2>
+                </div>
+                <div class="buttons-wrapper">
+                  <div *ngFor="let data of current[content]; let i=index" [attr.data-index]="i">
+                    <div class="container"
+                      [ngClass]="current.removeList[content].includes(data.id) ? getRemoveClass(i) : ''" 
+                      [ngClass]="toNumber(i)%2 === 0 ? 'evens' : 'odds'"
+                      (click)="transferToOtherBox(content, i, current)"
+                      matTooltip={{data.description}}>
+                      <div class="box">
+                        {{data.show}}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="EDUCATION">
-      <div class="cards">
-        <div class="row">
-          <button mat-raised-button (click)="openDialog('education')" color="accent">
-            + Education
-          </button>
-          <div class="card card-left">
-            <h2 class="title">Available</h2>
-            <div *ngFor="let edu of available.educations; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{edu.degree_type}} at {{edu.institution}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="blue" (click)="handleAdd('educations', i)"
-                    >add_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card card-right">
-            <h2 class="title">{{current?.title}}</h2>
-            <div *ngFor="let edu of current?.educations; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{edu.degree_type}} at {{edu.institution}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="red" (click)="handleRemove('educations', i)"
-                    >remove_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="SKILLS">
-      <div class="cards">
-        <div class="row">
-          <button mat-raised-button (click)="openDialog('skill')" color="accent">
-            + Skill
-          </button>
-          <div class="card card-left">
-            <h2 class="title">Available</h2>
-            <div *ngFor="let skill of available.skills; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{skill.name}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="blue" (click)="handleAdd('skills', i)"
-                    >add_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card card-right">
-            <h2 class="title">{{current?.title}}</h2>
-            <div *ngFor="let skill of current?.skills; let i=index" [attr.data-index]="i">
-              <div class="container">
-                <div class="box">
-                  {{skill.name}}
-                </div>
-                <div class="removable">
-                  <mat-icon class="red" (click)="handleRemove('skills', i)"
-                    >remove_circle</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="OTHER">
-      <div class="cards">
-        <div class="row">
-          <button mat-raised-button (click)="openDialog('other')" color="accent"> 
-            + Other
-          </button>
-          <div class="card card-left">
-            <h2 class="title">Available</h2>
-          </div>
-          <div class="card card-right">
-            <h2 class="title">{{current?.title}}</h2>
-            <!--
-            <div *ngFor="let other of current?.other">
-              <div class="container" cdkDrag>
-                <div class="box">
-                  {{other.key}}
-                </div>
-              </div>
-            </div>
-            -->
-          </div>
-        </div>
-      </div>
-    </mat-tab>
+      </mat-tab>
+    </div>
   </mat-tab-group>
-  <div *ngIf="slug==='new'" class="res-title">
-    <mat-form-field appearance="fill">
-      <mat-label>Resume Title:</mat-label>
-      <input matInput [(ngModel)]="current.title" required>
-    </mat-form-field>
-  </div>
-  <div class="action-buttons">
-    <button id="preview-button" mat-raised-button color="accent">
-      Preview
-      <mat-icon>visibility_sharp</mat-icon>
-    </button>
-    <button *ngIf="slug !== 'new'; else newRes" id="update-button" mat-raised-button color="primary"
-      (click)="updateCard()">Update
-      <mat-icon>check_circle</mat-icon>
-    </button>
-    <ng-template #newRes>
-      <button id="create-button" mat-raised-button color="primary"
-        (click)="createCard()">Create
+  <div class="tab-footer">
+    <div *ngIf="slug==='new'" class="res-title">
+      <mat-form-field appearance="fill">
+        <mat-label>Resume Title:</mat-label>
+        <input matInput [(ngModel)]="current.title" required>
+      </mat-form-field>
+    </div>
+    <div class="action-buttons">
+      <button id="preview-button" mat-raised-button color="accent">
+        Preview
+        <mat-icon>visibility_sharp</mat-icon>
+      </button>
+      <button *ngIf="slug !== 'new'; else newRes" id="update-button" mat-raised-button color="primary"
+        (click)="updateCard()">Update
         <mat-icon>check_circle</mat-icon>
       </button>
-    </ng-template>
+      <ng-template #newRes>
+        <button id="create-button" mat-raised-button color="primary"
+          (click)="createCard()">Create
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </ng-template>
+    </div>
   </div>
 </div>
 

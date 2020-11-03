@@ -1,24 +1,39 @@
 import { Component, ViewEncapsulation, OnInit, AfterViewInit, Input, HostListener, Inject } from '@angular/core';
-import { Resume } from './../../_interface/resume.model';
+
+import { RemoveList, ResumeInterface, ResumeClass } from './../../_interface/resume.model';
+import { ResumeService } from './edit/resume/resume.service';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../repository.service';
 import { ErrorHandlerService } from './../error-handler.service';
 
 import { AddPersonal } from './edit/personal/personal.component';
+import { PersonalInterface } from '../../_interface/personal.model';
+import { PersonalService } from './edit/personal/personal.service';
+
 import { AddExperience } from './edit/experience/experience.component';
+import { ExperienceInterface } from '../../_interface/experience.model';
+import { ExperienceService } from './edit/experience/experience.service';
+
+import { EducationService } from './edit/education/education.service';
+import { EducationInterface } from '../../_interface/education.model';
 import { AddEducation } from './edit/education/education.component';
+
 import { AddSkill } from './edit/skill/skill.component';
+import { SkillInterface } from '../../_interface/skill.model';
+import { SkillService } from './edit/skill/skill.service';
+
+import { AddOther } from './edit/other/other.component';
+import { OtherInterface } from '../../_interface/other.model';
+import { OtherService } from './edit/other/other.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'lodash';
 
-interface Show {
-  all: boolean;
-  personal: boolean;
-  experiences: boolean;
-  skills: boolean;
-  educations: boolean;
-  other: boolean;
+
+class Labels {
+  personal: string;
+
 }
 
 @Component({
@@ -27,53 +42,37 @@ interface Show {
   styleUrls: ['./card-edit.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CardEditComponent implements OnInit, AfterViewInit {
+export class CardEditComponent implements OnInit {
+  keys = ['personal', 'experiences', 'educations', 'skills', 'other'];
+  labels: Object = {
+    personal: 'Personal',
+    experiences: 'Experience',
+    educations: 'Education', 
+    skills: 'Skill', 
+    other: 'Other'
+  };
+  showDescription: boolean = false;
+  
   type: string | null = null;
   slug: string | null = null;
-  available: Resume = {
-    contacts: [],
-    skills: [],
-    experiences: [],
-    educations: [],
-    links: [],
-    title: 'Available',
-    created_at: new Date(),
-    slug: 'none'
-  }
-
-  current: Resume | null = null;
+  
+  // Labels on tabs
+  personalLabel: string;
+  experienceLabel: string;
+  educationLabel: string;
+  skillLabel: string;
+  otherLabel: string;
+  
+  available = new ResumeClass('Available');
+  current: ResumeClass = new ResumeClass('Current');
   newName: string | null = null;
   newNameIsSet: boolean = false;
   
   @Input() selectedObject: string = "";
-
-  show: Show = {
-    'all': true,
-    'personal': false,
-    'experiences': false,
-    'skills': false,
-    'educations': false,
-    'other': false
-  }
-  innerWidth: any;
-  @HostListener('window:resize', ['$event'])
-  onResize(event){
-    this.innerWidth = window.innerWidth;
-    this.setShow();
-  }
-
-  setShow(option?){
-    if (!option){
-      this.show = _.mapValues(this.show, () => false);
-      if (this.innerWidth < 1000) {
-        this.show.personal = true;
-      } else {
-        this.show.all = true;
-      }
-    } else {
-      this.show = _.mapValues(this.show, () => false);
-      this.show[option] = true;
-    }
+  
+  status: boolean = false;
+  toggleBox(){
+    this.status = !this.status;
   }
 
   constructor(
@@ -81,18 +80,17 @@ export class CardEditComponent implements OnInit, AfterViewInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private errorHandler: ErrorHandlerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private personalService: PersonalService,
+    private educationService: EducationService,
+    private skillService: SkillService,
+    private experienceService: ExperienceService,
+    private otherService: OtherService,
+    private resumeService: ResumeService,
   ) { }
 
   ngOnInit(): void {
     this.getCurrentDetails();
-    //this.getAvailableDetails();
-    this.innerWidth = window.innerWidth;
-    this.setShow();
-  }
-
-  ngAfterViewInit(): void {
-    //this.getAvailableDetails();
   }
 
   getCurrentDetails() {
@@ -104,22 +102,14 @@ export class CardEditComponent implements OnInit, AfterViewInit {
         this.type = type;
         this.slug = slug;
         if (slug === 'new') {
-          this.current = {
-            contacts: [],
-            skills: [],
-            experiences: [],
-            educations: [],
-            links: [],
-            title: '',
-            created_at: new Date(),
-            slug: ''
-          }
+          this.current = new ResumeClass('');
           this.getAvailableDetails();
         } else {
-          const currentDetailsApiURL: string = `api/v1/resume/${slug}`;
-          this.repository.getData(currentDetailsApiURL)
-          .subscribe(res => {
-            this.current = res as Resume;
+          this.resumeService.getDetails(slug)
+          .then((res: ResumeClass) => {
+            this.current = res;
+            this.current.removeList = new RemoveList();
+            this.setLabels();
             this.getAvailableDetails();
           });
         }
@@ -131,76 +121,74 @@ export class CardEditComponent implements OnInit, AfterViewInit {
     }
   }
 
+  setLabels(){
+    this.personalLabel = `Personal ${this.current.personal.length}`;
+    this.experienceLabel = `Experience ${ this.current.experiences.length}`;
+    this.educationLabel = `Education ${this.current.educations.length}`;
+    this.skillLabel = `Skills ${this.current.skills.length}`;
+    this.otherLabel = `Other ${this.current.other.length}`;
+  }
+
   getAvailableDetails() {
-    const { contacts, links, experiences, educations, skills } = this.current;
-
-    this.repository.getData("api/v1/contact/")
-    .subscribe(res => {
-      console.log(contacts);
-      this.available.contacts = (res as any[]).filter(function(value, index){
-        return !contacts.some(c => c.slug === value.slug);
-      });
-      console.log("#Contacts a:", this.available.contacts.length);
-      console.log("#Contacts c:", this.current.contacts.length);
-    });
-    this.repository.getData("api/v1/link/")
-    .subscribe(res => {
-      this.available.links = (res as any[]).filter(function(value, index) {
-        return !links.some(l => l.slug === value.slug);
-      });
-      console.log("#Links a:", this.available.links.length);
-      console.log("#Links c:", this.current.links.length);
-    });
-    this.repository.getData("api/v1/experience/")
-    .subscribe(res => {
-      this.available.experiences = (res as any[]).filter(function(value, index){
-        return !experiences.some(ex => ex.slug === value.slug);
-      });
-      console.log("#Exp a:", this.available.experiences.length);
-      console.log("#Exp c:", this.current.experiences.length);
-    });
-    this.repository.getData("api/v1/education/")
-    .subscribe(res => {
-      this.available.educations = (res as any[]).filter(function(value, index) {
-        return !educations.some(ed => ed.slug === value.slug);
-      });
-      console.log("#Edu a:", this.available.educations.length);
-      console.log("#Edu c:", this.current.educations.length);
-    });
-
-    // TODO: Finish authentication and add to other fields
+    const { personal, experiences, educations, skills, other } = this.current;
     
-    this.repository.getData("api/v1/skill/")
-    .subscribe(res => {
-      this.available.skills = (res as any[]).filter(function(value, index){
-        return !skills.some(sk => sk.slug === value.slug);
-      });
-      console.log("#Skill a:", this.available.skills.length);
-      console.log("#Skill c:", this.current.skills.length);
+    this.personalService.getNotInCurrent(personal)
+    .then(res => {
+      this.available.personal = res as PersonalInterface[];
+      this.personalService.setShow(this.available.personal);
+      this.personalService.setShow(this.current.personal);
     });
-    /**
-    // TODO: Add other in backend
-    this.repository.getData("api/v1/other/")
-    .subscribe(res => {
-      this.available.experiences = res as any;
-    });
-    */
+
+    this.experienceService.getNotInCurrent(experiences)
+    .then(res => {
+      this.available.experiences = res as ExperienceInterface[];
+      this.experienceService.setShow(this.available.experiences);
+      this.experienceService.setShow(this.current.experiences);
+    }, err => console.log(err));
+
+    this.educationService.getNotInCurrent(educations)
+    .then(res => {
+      this.available.educations = res as EducationInterface[];
+      this.educationService.setShow(this.available.educations);
+      this.educationService.setShow(this.current.educations);
+    }, err => console.log(err));
+    
+    this.skillService.getNotInCurrent(skills)
+    .then(res => {
+      this.available.skills = res as SkillInterface[];
+      this.skillService.setShow(this.available.skills);
+      this.skillService.setShow(this.current.skills);
+
+    console.log(this.available.skills);
+    }, err => console.log(err));
+    
+    this.otherService.getNotInCurrent(other)
+    .then(res => {
+      this.available.other = res as OtherInterface[];
+      this.otherService.setShow(this.available.other);
+      this.otherService.setShow(this.current.other);
+
+    }, err => console.log(err));
   }
 
   refreshAvailableDetails(option?) {
     if (!option) {
-      const options = ['contacts', 'links', 'experiences', 'educations', 'skills', 'others'];
+      const options = ['personal', 'experiences', 'educations', 'skills', 'others'];
       options.forEach(op => {
         this.refreshAvailableDetails(op);
       });
     } else {
       console.log("Refreshing", option);
       const inCurrent = this.current[option];
-      const singular = option.slice(0, -1);
+      const singular = ['personal', 'other'].includes(option) ? option : option.slice(0, -1) ;
+      console.log(singular)
       this.repository.getData(`api/v1/${singular}`)
       .subscribe(res => {
         const arr = res as any[];
-        this.available[option] = (res as any[]).filter(el => !inCurrent.includes(el.id))
+        this.available[option] = (res as Array<PersonalInterface|ExperienceInterface|EducationInterface|SkillInterface|OtherInterface>).filter(function(value, index){
+          return !inCurrent.some(ed => ed.id === value.id);
+        })
+        this.setLabels();
       });
     }
   }
@@ -217,45 +205,32 @@ export class CardEditComponent implements OnInit, AfterViewInit {
   }
 
   updateCard() {
-    this.repository.update(`api/v1/resume/${this.current.slug}/`, {
+    this.repository.patch(`api/v1/resume/${this.current.slug}/`, {
       ...this.current
     })
     .subscribe(res => {
       console.log(res);
-      this.router.navigate(['resumes/'])
+      this.router.navigate([`resumes/${this.current.slug}`])
     }, (err)=>{
       console.log(err);
     })
   }
 
-  handleAdd(option, id) {
-    if (this.available.hasOwnProperty(option)){
-      if (!this.available[option][id]) {
-        return;
+  transferToOtherBox = (option, id, obj: ResumeClass) => {
+    const source: ResumeClass = obj.title === this.available.title ? this.available : this.current;
+    const target: ResumeClass = obj.title === this.current.title ? this.available : this.current;
+    source.removeList[option].push(source[option][id]['id']);
+    setTimeout(() => {
+      const removeThis = source[option].splice(id,1)[0]; // Removed from source box
+      target[option].push(removeThis); // Placed in target box
+      const indexInTarget = target.removeList[option].indexOf(removeThis['id'], 0); // Check if indexedin target box
+      if (indexInTarget > -1){
+        target.removeList[option].splice(indexInTarget, 1); 
       }
-      if (!this.current[option]){
-        this.current[option] = [];
-      }
-      this.current[option].push(this.available[option][id]);
-      this.available[option].splice(id, 1);
-    }
+      this.setLabels();
+    }, 1000);
   }
 
-  handleAddExperience() {
-    console.log("Add experience");
-  }
-  
-  handleAddSkill() {
-    console.log("Add skill");
-  }
-  
-  handleAddTask() {
-    console.log("Add task");
-  }
-  
-  handleAddEducation() {
-    console.log("Add education");
-  }
 
   handleRemove(current, id) {
     if (this.current.hasOwnProperty(current)){
@@ -313,8 +288,28 @@ export class CardEditComponent implements OnInit, AfterViewInit {
         });
         break;
       }
+      case "other": {
+        const dialogRef = this.dialog.open(AddOther, {
+          width: '300px', data: {info: this.info}
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          this.refreshAvailableDetails('other');
+        });
+      }
     }
-    console.log(this.info);
+  }
+
+  editElement(){
+    console.log(event);
+  }
+
+  toNumber(i) {
+    return parseFloat(i);
+  }
+
+  getRemoveClass(i) {
+    console.log(i, parseFloat(i) %2 === 0);
+    return parseFloat(i) % 2 === 0 ? 'remove-left' : 'remove-right';
   }
 }
 
