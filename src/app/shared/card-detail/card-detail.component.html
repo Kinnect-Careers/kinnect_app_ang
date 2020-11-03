@@ -22,23 +22,8 @@
           </div>
         </mat-card-content>
         <mat-card-content *ngIf="type === 'resumes'">
-          <div *ngFor="let contact of detail?.contacts" class="details">
-            <span *ngIf="contact.contact_type === 'P' else email">
-              Phone:
-            </span>
-            <ng-template #email>
-              Email:
-            </ng-template>
-            <span>{{contact.contact}}</span>
-          </div>
-          <div *ngFor="let link of detail?.links" class="details">
-            <span *ngIf="link.link_type === 'R' else web">
-              Repository:
-            </span>
-            <ng-template #web>
-              Website:
-            </ng-template>
-            {{link.link}}
+          <div *ngFor="let personal of detail?.personal" class="details">
+            <span>{{personal.data}}</span>
           </div>
         </mat-card-content>
       </div>

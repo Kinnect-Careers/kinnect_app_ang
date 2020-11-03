@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Job } from './../../_interface/job.model';
-import { Resume } from './../../_interface/resume.model';
+import { ResumeClass } from './../../_interface/resume.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../repository.service';
 import { ErrorHandlerService } from './../error-handler.service';
@@ -12,9 +12,8 @@ import * as moment from 'moment';
   styleUrls: ['./card-detail.component.scss']
 })
 export class CardDetailComponent implements OnInit {
-
   type: string | null = null;  
-  detail: Job | Resume = null;
+  detail: Job | ResumeClass;
 
   constructor(
     private repository: RepositoryService,
@@ -52,7 +51,7 @@ export class CardDetailComponent implements OnInit {
         let detailApiURL: string = `api/v1/resume/${slug}/`;
         this.repository.getData(detailApiURL)
         .subscribe(res => {
-          var resume = res as Resume;
+          var resume = res as ResumeClass;
           console.log(resume);
           resume['time_ago'] = moment(resume.created_at, "YYYY-MM-DD").fromNow();
           resume['educations'].map((ed) => {
@@ -81,7 +80,6 @@ export class CardDetailComponent implements OnInit {
   }
 
   handleEdit(){
-    console.log(`Editing ${this.type}`);
     this.router.navigate([`${this.type}/${this.detail['slug']}/edit`]);
   }
 
