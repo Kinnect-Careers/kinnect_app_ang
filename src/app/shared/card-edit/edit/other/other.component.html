@@ -1,0 +1,17 @@
+<h1>Other Information</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Type of information:</mat-label>
+    <input matInput [(ngModel)]="data.type_data">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Information:</mat-label>
+    <input matInput [(ngModel)]="data.data">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.data" cdkFocusInitial
+    (click)="onSubmit()">Submit</button>
+</div>
+
