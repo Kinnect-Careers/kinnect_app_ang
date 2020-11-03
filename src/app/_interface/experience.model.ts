@@ -9,4 +9,5 @@ export interface ExperienceInterface {
   current: boolean;
   tasks: string;
   created_at?: Date;
+  show?: string;
 }

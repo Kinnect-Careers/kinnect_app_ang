@@ -1,17 +1,9 @@
-export interface LinkInterface {
+export interface PersonalInterface {
   id: string;
   created_at: Date;
-  link: string;
-  link_type: string;
+  data: string;
+  personal_type: string;
   slug: string;
   url: string;
-}
-
-export interface ContactInterface {
-  id: string;
-  created_at: Date;
-  contact: string;
-  contact_type: string;
-  slug: string;
-  url: string;
+  show: string;
 }
