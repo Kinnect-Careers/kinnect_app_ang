@@ -3,7 +3,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { Tag } from './../../_interface/tag.model';
+import { TagInterface } from './../../_interface/tag.model';
 
 @Component({
   selector: 'app-tag-list',
@@ -14,7 +14,7 @@ export class TagListComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ["name"];
 
-  dataSource = new MatTableDataSource<Tag>();
+  dataSource = new MatTableDataSource<TagInterface>();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -35,7 +35,7 @@ export class TagListComponent implements OnInit, AfterViewInit {
     this.repoService.getData('api/v1/tag/')
     .subscribe(res => {
       console.log(res);
-      this.dataSource.data = res as Tag[];
+      this.dataSource.data = res as TagInterface[];
     })
   }
 
