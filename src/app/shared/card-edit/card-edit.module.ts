@@ -10,13 +10,14 @@ import { AddPersonal } from './edit/personal/personal.component';
 import { AddExperience } from './edit/experience/experience.component';
 import { AddEducation } from './edit/education/education.component';
 import { AddSkill } from './edit/skill/skill.component';
+import { AddOther } from './edit/other/other.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
-  declarations: [CardEditComponent, AddPersonal, AddExperience, AddEducation, AddSkill],
+  declarations: [CardEditComponent, AddPersonal, AddExperience, AddEducation, AddSkill, AddOther],
   imports: [
     CommonModule,
     AngularMaterialModule,
